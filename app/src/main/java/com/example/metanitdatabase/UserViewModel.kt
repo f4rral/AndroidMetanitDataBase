@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 
 class UserViewModel(application: Application) : ViewModel() {
     val userList: LiveData<List<User>>
@@ -39,5 +40,11 @@ class UserViewModel(application: Application) : ViewModel() {
 
     fun deleteUser(id: Int) {
         repository.deleteUser(id)
+    }
+}
+
+class UserViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return UserViewModel(application) as T
     }
 }

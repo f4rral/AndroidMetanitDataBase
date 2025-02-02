@@ -39,25 +39,30 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val owner = LocalViewModelStoreOwner.current
+            MainScreen()
+        }
+    }
+}
 
-            owner?.let {
-                val viewModel: UserViewModel = viewModel(
-                    it,
-                    "UserViewModel",
-                    UserViewModelFactory(LocalContext.current.applicationContext as Application)
-                )
+@Composable
+fun MainScreen() {
+    val owner = LocalViewModelStoreOwner.current
 
-                MetanitDataBaseTheme {
-                    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(innerPadding)
-                        ) {
-                            Main(viewModel)
-                        }
-                    }
+    owner?.let {
+        val viewModel: UserViewModel = viewModel(
+            it,
+            "UserViewModel",
+            UserViewModelFactory(LocalContext.current.applicationContext as Application)
+        )
+
+        MetanitDataBaseTheme {
+            Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(innerPadding)
+                ) {
+                    Main(viewModel)
                 }
             }
         }
@@ -182,15 +187,5 @@ fun UserTitleRow() {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    val owner = LocalViewModelStoreOwner.current
-
-    owner?.let {
-        val viewModel: UserViewModel = viewModel(
-            it,
-            "UserViewModel",
-            UserViewModelFactory(LocalContext.current.applicationContext as Application)
-        )
-
-        Main(viewModel)
-    }
+    MainScreen()
 }
