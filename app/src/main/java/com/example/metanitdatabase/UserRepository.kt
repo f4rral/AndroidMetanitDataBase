@@ -5,6 +5,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+// Репозиторий содержит код, который вызывает методы DAO для выполнения операций с базой данных.
 class UserRepository(private val userDao : UserDao) {
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
 

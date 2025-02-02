@@ -5,6 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+/*
+    База данных Room
+    Представляет слой поверх фактической базы данных SQLite,
+    который отвечает за предоставление доступа к экземплярам DAO.
+    Каждое приложение Android должно иметь только один экземпляр базы данных Room
+*/
 @Database(entities = [(User::class)], version = 1)
 abstract class UserRoomDatabase : RoomDatabase() {
     abstract val userDao: UserDao

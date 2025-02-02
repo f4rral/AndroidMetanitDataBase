@@ -5,6 +5,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+
+// Класс сущности User, который определяет схему таблицы базы данных.
 @Entity(tableName = "users")
 class User {
     @PrimaryKey(autoGenerate = true)
