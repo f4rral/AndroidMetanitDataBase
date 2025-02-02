@@ -25,8 +25,12 @@ class UserViewModel(application: Application) : ViewModel() {
         userName.value = value
     }
 
-    fun changeAge(value: Int) {
-        userAge.intValue = value
+    fun changeAge(value: String) {
+        if (value == "") {
+            return
+        }
+
+        userAge.intValue = value.toInt()
     }
 
     fun addUser() {
